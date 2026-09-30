@@ -1,0 +1,603 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #fff0e7 0%,
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 80% 80%,
+      #ffd8d1 0%,
+      transparent 35%
+    ),
+
+    linear-gradient(
+      135deg,
+      #fff8f1,
+      #f7d5cd
+    );
+
+  color: #632d2d;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+}
+
+
+/* Small dotted background texture */
+
+body::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(178, 55, 53, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 25px 25px;
+
+  pointer-events: none;
+}
+
+
+/* Main card */
+
+.card {
+  position: relative;
+
+  width: min(90%, 470px);
+
+  margin: 30px auto;
+
+  padding: 42px 30px;
+
+  text-align: center;
+
+  background:
+    rgba(255, 250, 245, 0.80);
+
+  backdrop-filter: blur(12px);
+
+  border:
+    1px solid
+    rgba(153, 62, 55, 0.20);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 70px
+    rgba(100, 40, 35, 0.18),
+
+    inset 0 0 40px
+    rgba(255, 255, 255, 0.5);
+
+  animation:
+    appear 1.2s ease;
+}
+
+
+/* Date at top */
+
+.small {
+  margin-bottom: 12px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 4px;
+
+  color: #a6534d;
+}
+
+
+/* Main title */
+
+h1 {
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(45px, 12vw, 68px);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  color: #8e302f;
+}
+
+
+/* "of Us" */
+
+h2 {
+  margin-top: 8px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-style: italic;
+
+  font-size: 30px;
+
+  font-weight: 500;
+
+  color: #a94b45;
+}
+
+
+/* Flower */
+
+.flower-frame {
+  width: 210px;
+  height: 210px;
+
+  margin: 28px auto 10px;
+
+  padding: 7px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a83e3a,
+      #e4a06c,
+      #a83e3a
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(120, 42, 38, 0.25),
+
+    0 0 0 8px
+    rgba(255, 255, 255, 0.45);
+
+  cursor: pointer;
+
+  animation:
+    float 4s ease-in-out infinite;
+
+  transition:
+    box-shadow 0.3s ease;
+}
+
+
+.flower-frame:hover {
+  box-shadow:
+    0 15px 40px
+    rgba(120, 42, 38, 0.32),
+
+    0 0 0 8px
+    rgba(255, 255, 255, 0.55);
+}
+
+
+.flower-frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  filter:
+    saturate(1.08)
+    contrast(0.96);
+}
+
+
+/* Divider */
+
+.line {
+  width: 55px;
+  height: 1px;
+
+  margin: 25px auto;
+
+  background: #b65b52;
+}
+
+
+/* Main message */
+
+.message {
+  max-width: 330px;
+
+  margin: auto;
+
+  font-size: 20px;
+
+  line-height: 1.45;
+
+  color: #693b38;
+}
+
+
+/* Quote */
+
+.quote {
+  margin:
+    22px auto
+    28px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-style: italic;
+
+  font-size: 15px;
+
+  color: #9a5953;
+}
+
+
+/* Button */
+
+#openMessage {
+  margin-top: 5px;
+
+  padding:
+    12px 24px;
+
+  border:
+    1px solid #a6534d;
+
+  border-radius: 30px;
+
+  background: transparent;
+
+  color: #8e302f;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+
+#openMessage:hover {
+  background: #8e302f;
+
+  color: white;
+
+  transform:
+    translateY(-2px);
+}
+
+
+#openMessage:active {
+  transform:
+    scale(0.96);
+}
+
+
+/* Hidden message */
+
+.hidden-message {
+  max-width: 340px;
+
+  max-height: 0;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  font-size: 18px;
+
+  line-height: 1.5;
+
+  color: #693b38;
+
+  transition:
+    max-height 0.9s ease,
+    opacity 0.7s ease,
+    margin 0.7s ease;
+}
+
+
+.hidden-message.show {
+  max-height: 400px;
+
+  margin-top: 25px;
+
+  opacity: 1;
+}
+
+
+.hidden-message p {
+  margin-bottom: 14px;
+}
+
+
+.ending {
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-style: italic;
+
+  color: #9a4945;
+}
+
+
+/* Counter */
+
+.counter {
+  margin-top: 25px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  color: #a6534d;
+}
+
+
+/* Bottom text */
+
+.date {
+  margin-top: 18px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  color: #9a4945;
+}
+
+
+.date span {
+  margin:
+    0 7px;
+
+  color: #b94743;
+}
+
+
+/* Background flowers */
+
+.petals span {
+  position: fixed;
+
+  color:
+    rgba(171, 57, 54, 0.22);
+
+  font-size: 22px;
+
+  pointer-events: none;
+
+  animation:
+    fall linear infinite;
+}
+
+
+.petals span:nth-child(1) {
+  left: 10%;
+
+  animation-duration: 9s;
+}
+
+
+.petals span:nth-child(2) {
+  left: 30%;
+
+  animation-duration: 12s;
+
+  animation-delay: 2s;
+}
+
+
+.petals span:nth-child(3) {
+  left: 55%;
+
+  animation-duration: 10s;
+
+  animation-delay: 1s;
+}
+
+
+.petals span:nth-child(4) {
+  left: 75%;
+
+  animation-duration: 14s;
+
+  animation-delay: 3s;
+}
+
+
+.petals span:nth-child(5) {
+  left: 90%;
+
+  animation-duration: 11s;
+
+  animation-delay: 5s;
+}
+
+
+/* Flower click animation */
+
+.flower-frame.clicked {
+  animation:
+    flowerPop 0.5s ease;
+}
+
+
+@keyframes flowerPop {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.08)
+      rotate(2deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* Flower floating */
+
+@keyframes float {
+
+  0%, 100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-8px);
+  }
+
+}
+
+
+/* Page entrance */
+
+@keyframes appear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* Falling flowers */
+
+@keyframes fall {
+
+  from {
+    transform:
+      translateY(-10vh)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translateY(110vh)
+      rotate(360deg);
+  }
+
+}
+
+
+/* Floating heart/flower particles */
+
+.love-particle {
+  position: fixed;
+
+  pointer-events: none;
+
+  z-index: 100;
+
+  font-size: 20px;
+
+  animation:
+    loveFloat 1.8s ease-out forwards;
+}
+
+
+@keyframes loveFloat {
+
+  0% {
+    opacity: 1;
+
+    transform:
+      translate(0, 0)
+      scale(0.5)
+      rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(var(--x), var(--y))
+      scale(1.4)
+      rotate(var(--rotation));
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+  .card {
+    width: 92%;
+
+    padding:
+      35px 22px;
+  }
+
+  .flower-frame {
+    width: 190px;
+    height: 190px;
+  }
+
+  .message {
+    font-size: 19px;
+  }
+
+}
